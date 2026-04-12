@@ -15,3 +15,17 @@ The goal was to implement the **Identity as Cryptographic Geometry (The Epistemi
 
 ## Tension Maintained
 We successfully avoided standardizing the applications into a single pattern (Governance Attractor standard) by only *evaluating* their topological plasticity against Sovereign principles via the audit, rather than *refusing* to generate them in the first place. The paradox (e.g. generating a decentralized app that accidentally relies on a centralized cloud database) is granted orthagonal space in the UI, exposed visually via the CFDI score rather than silently discarded.
+
+## Phase 2: Strategic Product Planning & Requirement Decomposition
+
+### Overview
+In extending the Sovereign OS architecture, the focus shifted from foundational invariants (like CFDI and topological plasticity) towards actionable, forward-thinking product expansion. This required adopting a "Product Planning Agent" persona to generate high-value epics aligned with Sovereign principles.
+
+### Key Insights & Strategic Direction
+1.  **Peer-to-Peer Substrate Extension (WebRTC):** The most critical limitation of the current matrix is its isolation. True "paraconsistent knowledge discovery" requires multiple nodes. Planning for a WebRTC-based, decentralized sync (Epic 1) transforms the tool from a personal conceptual scratchpad into a distributed, swarm-intelligence network, directly executing the `SWARM_ENTANGLE` phase of the architecture across sovereign boundaries.
+2.  **Trustless Verification (ZK-Proofs):** While the CFDI score effectively measures drift, it currently requires trust in the local client's assertion. Introducing Zero-Knowledge proofs for CFDI scores (Epic 2) mathematically enforces the "Identity-controlled" and "Cryptographic" invariants, allowing nodes to prove architectural purity without revealing proprietary specs. This is a novel application of ZK technology to software architecture auditing.
+3.  **Local-First Semantic Resonance (Local Embeddings):** Relying on exact keyword matches for filtering apps limits the serendipitous discovery of orthogonal concepts. Integrating in-browser vector embeddings (Epic 3) allows for true semantic search and "Resonance Checks" (Phase 3) entirely locally, preventing the leakage of the conceptual substrate to external AI providers while vastly improving user experience.
+
+### Methodological Takeaways
+-   **Stakeholder Analysis as a Filter:** Applying stakeholder perspective analysis ensured that features weren't just technically interesting, but delivered specific value to defined segments (e.g., Compliance Officers needing ZK proofs vs. Researchers needing P2P blending).
+-   **Requirement Decomposition:** Breaking down abstract hypotheses (e.g., "Topological Extrusion") into concrete, testable user stories (e.g., "WebRTC Handshake Protocol") bridges the gap between high-level philosophical architecture and tangible software development.
