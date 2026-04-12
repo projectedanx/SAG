@@ -9,6 +9,7 @@ export const Dashboard: React.FC = () => {
     apps, 
     generateDescriptionForApp,
     generateSpecsForApp,
+    auditApp,
     selectedAppIds, 
     toggleAppSelection, 
     blendSelectedApps, 
@@ -101,6 +102,7 @@ export const Dashboard: React.FC = () => {
                 onGenerate={generateDescriptionForApp} 
                 onGenerateSpecs={generateSpecsForApp}
                 onViewSpecs={handleViewSpecs}
+                onAudit={auditApp}
             />
             ))
         )}
