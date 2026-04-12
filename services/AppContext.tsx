@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { AppItem, GenerationConfig, INITIAL_APP_DATA, LogEntry, AppDomain } from '../types';
-import { generateAppDescription, generateBlendedConcept, generateConceptsFromDomains, generateAppSpecification } from './geminiService';
+import { generateAppDescription, generateBlendedConcept, generateConceptsFromDomains, generateAppSpecification, performSovereignAudit } from './geminiService';
 
 interface AppContextType {
   apps: AppItem[];
@@ -12,6 +12,7 @@ interface AppContextType {
   updateConfig: (key: keyof GenerationConfig, value: number) => void;
   generateDescriptionForApp: (id: string) => Promise<void>;
   generateSpecsForApp: (id: string) => Promise<void>;
+  auditApp: (id: string) => Promise<void>;
   generateAllDescriptions: () => Promise<void>;
   resetApps: () => void;
   purgeApps: () => void;
@@ -103,6 +104,29 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   }, [apps, config, addLog]);
 
+    const auditApp = useCallback(async (id: string) => {
+    const app = apps.find(a => a.id === id);
+    if (!app) return;
+
+    updateAppStatus(id, 'auditing');
+    addLog(`Initiating Sovereign Audit for ${app.name}...`, 'system');
+
+    try {
+      const result = await performSovereignAudit(app, config);
+      updateAppStatus(id, 'completed', {
+        cfdiScore: result.cfdiScore,
+        auditLog: result.auditLog
+      });
+
+      const logType = result.cfdiScore > 0.15 ? 'error' : 'success';
+      addLog(`Audit complete for ${app.name}. CFDI: ${result.cfdiScore}`, logType);
+    } catch (error) {
+      console.error(error);
+      updateAppStatus(id, 'failed');
+      addLog(`Sovereign Audit failed for ${app.name}`, 'error');
+    }
+  }, [apps, config, addLog]);
+
   const generateAllDescriptions = useCallback(async () => {
     setIsProcessing(true);
     addLog('Starting batch generation...', 'system');
@@ -126,7 +150,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       generatedDescription: undefined,
       specification: undefined,
       isBlended: false,
-      isDeepBlend: false
+      isDeepBlend: false,
+      cfdiScore: undefined,
+      auditLog: undefined
     })));
     setSelectedAppIds([]);
     addLog('App states reset to factory defaults.', 'system');
@@ -241,6 +267,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       updateConfig,
       generateDescriptionForApp,
       generateSpecsForApp,
+      auditApp,
       generateAllDescriptions,
       resetApps,
       purgeApps,

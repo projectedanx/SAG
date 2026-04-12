@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Terminal, Activity, Zap, Plus, Cpu } from 'lucide-react';
+import { LayoutDashboard, Terminal, Activity, Zap, Plus, Cpu, Download } from 'lucide-react';
 import { ViewMode } from '../App';
 import { useAppStore } from '../services/AppContext';
 import { APP_DOMAINS } from '../types';
@@ -18,8 +18,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
     resetApps,
     selectedDomains,
     toggleDomainSelection,
-    generateAppsFromSelectedDomains
+    generateAppsFromSelectedDomains,
+    apps
   } = useAppStore();
+
+
+  const exportMatrix = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(apps, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", "epistemic-matrix.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
 
   return (
     <aside className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden">
@@ -159,6 +171,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
               Run Generator
             </>
           )}
+        </button>
+
+
+        <button
+          onClick={exportMatrix}
+          className="w-full py-2 px-4 rounded-md text-xs font-medium border border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+        >
+          <Download className="w-3.5 h-3.5" />
+          Export Matrix
         </button>
 
         <button

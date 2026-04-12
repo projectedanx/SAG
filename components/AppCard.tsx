@@ -7,11 +7,15 @@ interface AppCardProps {
   isSelected?: boolean;
   onGenerate: (id: string) => void;
   onGenerateSpecs?: (id: string) => void;
-  onViewSpecs?: (id: string) => void;
+  onViewSpecs,
+  onAudit?: (id: string) => void;
+  onAudit?: (id: string) => void;
+
   onSelect?: (id: string) => void;
 }
 
-export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onSelect }) => {
+export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs,
+  onAudit, onSelect }) => {
   const statusColors = {
     idle: 'border-slate-800 bg-slate-900/50',
     generating: 'border-sovereign-500/50 bg-sovereign-900/10 shadow-[0_0_15px_-3px_rgba(14,165,233,0.3)]',
@@ -65,6 +69,7 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
            {!isSelected && app.status === 'completed' && <CheckCircle className="w-4 h-4 text-green-500" />}
            {!isSelected && app.status === 'failed' && <AlertCircle className="w-4 h-4 text-red-500" />}
            {!isSelected && app.status === 'generating' && <RefreshCw className="w-4 h-4 text-sovereign-400 animate-spin" />}
+           {!isSelected && app.status === 'auditing' && <ShieldAlert className="w-4 h-4 text-yellow-500 animate-pulse" />}
         </div>
       </div>
 
@@ -83,16 +88,35 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
             <p className="text-sm text-slate-200 leading-relaxed font-medium">{app.generatedDescription}</p>
           </div>
         )}
+
+        {app.cfdiScore !== undefined && (
+          <div className={`mt-3 pt-3 border-t border-slate-800 flex flex-col gap-1`}>
+             <div className="flex items-center gap-2">
+                 {app.cfdiScore > 0.15 ? <ShieldAlert className="w-4 h-4 text-red-400" /> : <ShieldCheck className="w-4 h-4 text-green-400" />}
+                 <span className={`text-xs font-mono font-bold ${app.cfdiScore > 0.15 ? 'text-red-400' : 'text-green-400'}`}>
+                    CFDI: {app.cfdiScore.toFixed(2)}
+                 </span>
+             </div>
+             {app.auditLog && (
+                 <p className="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-800 pl-2">
+                     "{app.auditLog}"
+                 </p>
+             )}
+          </div>
+        )}
+
       </div>
 
       <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
          {/* Spec Button */}
-        {app.status !== 'generating' && onGenerateSpecs && onViewSpecs && (
+        {app.status !== 'generating' && onGenerateSpecs && onViewSpecs,
+  onAudit && (
             <button
                 onClick={(e) => {
                     e.stopPropagation();
                     if (app.specification) {
-                        onViewSpecs(app.id);
+                        onViewSpecs,
+  onAudit(app.id);
                     } else {
                         onGenerateSpecs(app.id);
                     }
@@ -106,6 +130,21 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
             >
                 {app.specification ? <FileCode className="w-3.5 h-3.5" /> : <FileText className="w-3.5 h-3.5" />}
             </button>
+        )}
+
+
+        {/* Audit Button */}
+        {app.status !== 'generating' && app.status !== 'auditing' && app.specification && onAudit && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onAudit(app.id);
+            }}
+            className="p-1.5 rounded bg-slate-800 hover:bg-sovereign-600 hover:text-white text-slate-400 transition-colors"
+            title="Perform Sovereign Audit"
+          >
+            <ShieldAlert className="w-3.5 h-3.5" />
+          </button>
         )}
 
         {/* Regenerate Button */}

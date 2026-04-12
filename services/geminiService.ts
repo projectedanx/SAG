@@ -236,3 +236,57 @@ export const generateAppSpecification = async (
     throw error;
   }
 };
+export const performSovereignAudit = async (
+  app: AppItem,
+  config: GenerationConfig
+): Promise<{ cfdiScore: number; auditLog: string }> => {
+  const client = getClient();
+
+  const prompt = `
+    Conduct a Sovereign Audit on the following application concept and specification.
+
+    App Name: ${app.name}
+    Concept: ${app.generatedDescription || app.originalDescription}
+    Specification: ${app.specification || 'No specification provided.'}
+
+    Task:
+    Evaluate the application's alignment with Sovereign Principles: Local-first architecture, Cryptographic proofs, and Identity-controlled data.
+
+    Calculate the Confidence-Fidelity Divergence Index (CFDI) score between 0.00 and 1.00.
+    - 0.00 means perfect alignment with Sovereign Principles (Zero drift).
+    - > 0.15 indicates significant algorithmic shame (High drift).
+    - 1.00 means complete deviation (Centralized, no cryptography, cloud-locked data).
+
+    Provide an "Algorithmic Shame / Audit Log" detailing your findings, addressing any transitivity fallacies or monotonic logic cascades. If CFDI > 0.15, use strict tone.
+
+    Output Requirements:
+    Return a JSON object with:
+    - cfdiScore: a number between 0 and 1.
+    - auditLog: a string summarizing the critique.
+  `;
+
+  try {
+    const response = await client.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: prompt,
+      config: {
+        temperature: 0.2,
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            cfdiScore: { type: Type.NUMBER, description: "Confidence-Fidelity Divergence Index score between 0.0 and 1.0" },
+            auditLog: { type: Type.STRING, description: "Detailed audit log and critique" }
+          },
+          required: ["cfdiScore", "auditLog"]
+        }
+      }
+    });
+
+    const jsonText = response.text || "{}";
+    return JSON.parse(jsonText);
+  } catch (error) {
+    console.error("Gemini Audit Error:", error);
+    throw error;
+  }
+};

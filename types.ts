@@ -4,10 +4,12 @@ export interface AppItem {
   originalDescription: string;
   generatedDescription?: string;
   specification?: string; // New field for technical specs
-  status: 'idle' | 'generating' | 'completed' | 'failed';
+  status: 'idle' | 'generating' | 'completed' | 'failed' | 'auditing';
   tokenUsage?: number;
   isBlended?: boolean;
   isDeepBlend?: boolean;
+  cfdiScore?: number;
+  auditLog?: string;
 }
 
 export interface GenerationConfig {
