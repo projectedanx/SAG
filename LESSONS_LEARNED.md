@@ -40,3 +40,7 @@ In alignment with Epic 1 and 3, a dedicated MCP server node (\`korsakov-matrix-s
 2.  **Strict JSON Schema 2020-12 Validation:** Tools (\`read_epistemic_matrix\` and \`write_epistemic_matrix\`) are strictly typed via \`zod\`, establishing a zero-trust boundary against malformed local payloads.
 3.  **SERF Compliance:** All exceptions during local file operations (e.g., \`ENOENT\`, JSON parsing failures) are trapped and mapped to the formal 5-category MCP fault taxonomy (e.g., \`SERVER_TOOL_CONFIGURATION\`, \`GENERAL_PROGRAMMING\`) before reaching the client. No raw stack traces are emitted.
 4.  **Local-First Invariant Anchoring:** By storing the topology on disk (\`matrix.json\`), the state is decoupled from browser memory, bridging the gap toward the future WebRTC / peer-to-peer data plane requirements.
+
+## Root Hygiene
+- **Observation**: Arbitrary output files (`output.md`) tend to accumulate in the repository root from previous agent operations, violating hygiene protocols.
+- **Action**: Enforced Prune-First mandate by sweeping non-standard artifact files from the root directory to maintain a high-security boiler room environment.
