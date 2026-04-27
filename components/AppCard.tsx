@@ -1,21 +1,19 @@
 import React from 'react';
 import { AppItem } from '../types';
-import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers } from 'lucide-react';
+import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers, ShieldAlert, ShieldCheck } from 'lucide-react';
 
 interface AppCardProps {
   app: AppItem;
   isSelected?: boolean;
   onGenerate: (id: string) => void;
   onGenerateSpecs?: (id: string) => void;
-  onViewSpecs,
-  onAudit?: (id: string) => void;
+  onViewSpecs?: (id: string) => void;
   onAudit?: (id: string) => void;
 
   onSelect?: (id: string) => void;
 }
 
-export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs,
-  onAudit, onSelect }) => {
+export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onAudit, onSelect }) => {
   const statusColors = {
     idle: 'border-slate-800 bg-slate-900/50',
     generating: 'border-sovereign-500/50 bg-sovereign-900/10 shadow-[0_0_15px_-3px_rgba(14,165,233,0.3)]',
@@ -109,14 +107,12 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
 
       <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
          {/* Spec Button */}
-        {app.status !== 'generating' && onGenerateSpecs && onViewSpecs,
-  onAudit && (
+        {app.status !== 'generating' && onGenerateSpecs && onViewSpecs && (
             <button
                 onClick={(e) => {
                     e.stopPropagation();
                     if (app.specification) {
-                        onViewSpecs,
-  onAudit(app.id);
+                        onViewSpecs(app.id);
                     } else {
                         onGenerateSpecs(app.id);
                     }
