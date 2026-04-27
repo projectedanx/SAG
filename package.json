@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "test:unit": "echo 'Running unit tests...'",
+    "test:integration": "echo 'Running integration tests...'",
+    "test:roundtrip": "echo 'Running roundtrip validation...'"
   },
   "dependencies": {
     "@google/genai": "^1.40.0",

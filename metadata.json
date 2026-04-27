@@ -1,5 +1,6 @@
 {
   "name": "Sovereign App Generator",
   "description": "A cognitive interface for managing and generating application descriptions using Sovereign AI principles.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "last_updated": "2026-04-27T10:29:59.745Z"
 }

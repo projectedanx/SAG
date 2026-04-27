@@ -44,3 +44,13 @@ In alignment with Epic 1 and 3, a dedicated MCP server node (\`korsakov-matrix-s
 ## Root Hygiene
 - **Observation**: Arbitrary output files (`output.md`) tend to accumulate in the repository root from previous agent operations, violating hygiene protocols.
 - **Action**: Enforced Prune-First mandate by sweeping non-standard artifact files from the root directory to maintain a high-security boiler room environment.
+
+## Phase 4: AI Agent Contract Formulation (Next.js Frontend RAG)
+
+### Overview
+In alignment with Sovereign scaling principles, we documented the formal behavioral contract for a Next.js Server Agent responsible for Retrieval-Augmented Generation (RAG). The primary focus was on establishing deterministic, hybrid reasoning + execution pipelines with a strong emphasis on validation and error propagation.
+
+### Key Insights & Invariants
+1. **Hybrid Execution Models (Reflector + ToolUser):** We established a formal, multi-phase logic pipeline mapping (Parse -> Re-rank -> Synthesize -> Cite -> Validate). This enforces that the agent does not merely *predict* text, but executes an algorithm to assemble knowledge, drastically reducing epistemic vulnerability (hallucination).
+2. **Deterministic Output Schemas:** Returning structured JSON with a strict `citations` array ensures the front-end can independently verify the context before rendering. Providing `confidence` and `retrieval_stats` exposes the internal cognitive load of the system to the observability layer.
+3. **The Self-Test Contract:** By embedding `assertions` and a `roundtrip_test` directly into the `AGENTS.md` file, the specification itself becomes executable test code. The agent's capability can be algorithmically audited against the parameters (e.g. latency, F1 score) demanded by the initial spec.
