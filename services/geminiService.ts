@@ -236,6 +236,58 @@ export const generateAppSpecification = async (
     throw error;
   }
 };
+export const sculptTopologicalPersona = async (
+  app: AppItem,
+  friction: string,
+  config: GenerationConfig
+): Promise<{ specification: string; metabolicCost: number }> => {
+  const client = getClient();
+
+  const prompt = `
+    Perform Topological Causal Sculpting on the following Application Persona.
+
+    App Name: ${app.name}
+    Current Specification: ${app.specification || app.originalDescription}
+    Tacit Operational Friction (Human Constraint): "${friction}"
+
+    Task:
+    1. Integrate the 'Tacit Operational Friction' into the 'Current Specification' without causing "Semantic Annihilation" (do not average it out, maintain the paraconsistent tension).
+    2. Enforce the Draft-Conditioned Constrained Decoding (DCCD) schema to return a deterministic JSON output.
+    3. Calculate the "Metabolic Cost" (thermodynamic or cognitive load required to resolve the spatial/logical constraints between the original spec and the injected friction). Higher friction or direct contradictions = higher cost (e.g. 500 to 5000 Joules/KN).
+    4. Provide the updated Technical Specification (Markdown format) embedding the resolution or the 'Symbolic Scar'.
+
+    Output Requirements:
+    Return a JSON object with:
+    - specification: The complete, updated technical specification in Markdown format.
+    - metabolicCost: A numeric value representing the strain of this adaptation.
+  `;
+
+  try {
+    const response = await client.models.generateContent({
+      model: 'gemini-3-flash-preview',
+      contents: prompt,
+      config: {
+        temperature: 0.3,
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            specification: { type: Type.STRING, description: "The updated technical specification in Markdown" },
+            metabolicCost: { type: Type.NUMBER, description: "The calculated metabolic/thermodynamic cost of the causal sculpture" }
+          },
+          required: ["specification", "metabolicCost"]
+        }
+      }
+    });
+
+    const jsonText = response.text || "{}";
+    return JSON.parse(jsonText);
+  } catch (error) {
+    console.error("Gemini Sculpt Error:", error);
+    throw error;
+  }
+};
+
 export const performSovereignAudit = async (
   app: AppItem,
   config: GenerationConfig

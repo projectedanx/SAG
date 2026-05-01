@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppItem } from '../types';
-import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers, ShieldAlert, ShieldCheck, Anvil, Activity } from 'lucide-react';
 
 interface AppCardProps {
   app: AppItem;
@@ -9,16 +9,18 @@ interface AppCardProps {
   onGenerateSpecs?: (id: string) => void;
   onViewSpecs?: (id: string) => void;
   onAudit?: (id: string) => void;
+  onSculpt?: (id: string, friction: string) => void;
 
   onSelect?: (id: string) => void;
 }
 
-export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onAudit, onSelect }) => {
+export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onAudit, onSculpt, onSelect }) => {
   const statusColors = {
     idle: 'border-slate-800 bg-slate-900/50',
     generating: 'border-sovereign-500/50 bg-sovereign-900/10 shadow-[0_0_15px_-3px_rgba(14,165,233,0.3)]',
     completed: 'border-green-500/30 bg-green-900/5',
     failed: 'border-red-500/30 bg-red-900/5',
+    sculpting: 'border-orange-500/50 bg-orange-900/10 shadow-[0_0_15px_-3px_rgba(249,115,22,0.3)]',
   };
 
   const isDeep = app.isDeepBlend;
@@ -68,6 +70,7 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
            {!isSelected && app.status === 'failed' && <AlertCircle className="w-4 h-4 text-red-500" />}
            {!isSelected && app.status === 'generating' && <RefreshCw className="w-4 h-4 text-sovereign-400 animate-spin" />}
            {!isSelected && app.status === 'auditing' && <ShieldAlert className="w-4 h-4 text-yellow-500 animate-pulse" />}
+           {!isSelected && app.status === 'sculpting' && <Anvil className="w-4 h-4 text-orange-500 animate-bounce" />}
         </div>
       </div>
 
@@ -87,6 +90,26 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
           </div>
         )}
 
+
+        {app.operationalFriction && (
+          <div className="mt-3 pt-3 border-t border-slate-800 flex flex-col gap-1">
+             <div className="flex items-center gap-2">
+                 <Anvil className="w-4 h-4 text-orange-400" />
+                 <span className="text-xs font-bold text-orange-400 uppercase tracking-wider">
+                    Tacit Friction Injected
+                 </span>
+             </div>
+             <p className="text-xs text-slate-300 leading-relaxed italic border-l-2 border-orange-900/50 pl-2">
+                 "{app.operationalFriction}"
+             </p>
+             {app.metabolicCost !== undefined && (
+                <div className="flex items-center gap-1 mt-1 text-xs font-mono text-slate-500">
+                    <Activity className="w-3.5 h-3.5" />
+                    <span>Metabolic Cost: <span className="text-orange-300">{app.metabolicCost} J/kN</span></span>
+                </div>
+             )}
+          </div>
+        )}
         {app.cfdiScore !== undefined && (
           <div className={`mt-3 pt-3 border-t border-slate-800 flex flex-col gap-1`}>
              <div className="flex items-center gap-2">
@@ -143,6 +166,23 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
           </button>
         )}
 
+
+        {/* Sculpt Button */}
+        {app.status !== 'generating' && app.status !== 'auditing' && app.status !== 'sculpting' && app.specification && onSculpt && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const friction = window.prompt("Inject Tacit Operational Friction (e.g., 'The system must operate entirely without internet connection', 'Management requires a 3x increase in processing speed without adding servers'):");
+              if (friction && friction.trim() !== '') {
+                onSculpt(app.id, friction.trim());
+              }
+            }}
+            className="p-1.5 rounded bg-slate-800 hover:bg-orange-600 hover:text-white text-slate-400 transition-colors"
+            title="Sculpt Topological Persona (Inject Friction)"
+          >
+            <Anvil className="w-3.5 h-3.5" />
+          </button>
+        )}
         {/* Regenerate Button */}
         {app.status !== 'generating' && (
           <button

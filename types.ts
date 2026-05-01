@@ -4,7 +4,9 @@ export interface AppItem {
   originalDescription: string;
   generatedDescription?: string;
   specification?: string; // New field for technical specs
-  status: 'idle' | 'generating' | 'completed' | 'failed' | 'auditing';
+  status: 'idle' | 'generating' | 'completed' | 'failed' | 'auditing' | 'sculpting';
+  operationalFriction?: string;
+  metabolicCost?: number;
   tokenUsage?: number;
   isBlended?: boolean;
   isDeepBlend?: boolean;

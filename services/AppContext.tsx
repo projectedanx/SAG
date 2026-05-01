@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { AppItem, GenerationConfig, INITIAL_APP_DATA, LogEntry, AppDomain } from '../types';
-import { generateAppDescription, generateBlendedConcept, generateConceptsFromDomains, generateAppSpecification, performSovereignAudit } from './geminiService';
+import { generateAppDescription, generateBlendedConcept, generateConceptsFromDomains, generateAppSpecification, performSovereignAudit, sculptTopologicalPersona } from './geminiService';
 
 interface AppContextType {
   apps: AppItem[];
@@ -13,6 +13,7 @@ interface AppContextType {
   generateDescriptionForApp: (id: string) => Promise<void>;
   generateSpecsForApp: (id: string) => Promise<void>;
   auditApp: (id: string) => Promise<void>;
+  sculptApp: (id: string, friction: string) => Promise<void>;
   generateAllDescriptions: () => Promise<void>;
   resetApps: () => void;
   purgeApps: () => void;
@@ -104,7 +105,29 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   }, [apps, config, addLog]);
 
-    const auditApp = useCallback(async (id: string) => {
+    const sculptApp = useCallback(async (id: string, friction: string) => {
+    const app = apps.find(a => a.id === id);
+    if (!app) return;
+
+    updateAppStatus(id, 'sculpting');
+    addLog(`Initiating Topological Causal Sculpting for ${app.name}...`, 'system');
+
+    try {
+      const result = await sculptTopologicalPersona(app, friction, config);
+      updateAppStatus(id, 'completed', {
+        specification: result.specification,
+        operationalFriction: friction,
+        metabolicCost: result.metabolicCost
+      });
+      addLog(`Sculpting complete for ${app.name}. Metabolic Cost: ${result.metabolicCost} J/kN`, 'success');
+    } catch (error) {
+      console.error(error);
+      updateAppStatus(id, 'failed');
+      addLog(`Sculpting failed for ${app.name}`, 'error');
+    }
+  }, [apps, config, addLog]);
+
+  const auditApp = useCallback(async (id: string) => {
     const app = apps.find(a => a.id === id);
     if (!app) return;
 
@@ -268,6 +291,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       generateDescriptionForApp,
       generateSpecsForApp,
       auditApp,
+      sculptApp,
       generateAllDescriptions,
       resetApps,
       purgeApps,

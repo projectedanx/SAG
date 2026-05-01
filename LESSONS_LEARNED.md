@@ -54,3 +54,14 @@ In alignment with Sovereign scaling principles, we documented the formal behavio
 1. **Hybrid Execution Models (Reflector + ToolUser):** We established a formal, multi-phase logic pipeline mapping (Parse -> Re-rank -> Synthesize -> Cite -> Validate). This enforces that the agent does not merely *predict* text, but executes an algorithm to assemble knowledge, drastically reducing epistemic vulnerability (hallucination).
 2. **Deterministic Output Schemas:** Returning structured JSON with a strict `citations` array ensures the front-end can independently verify the context before rendering. Providing `confidence` and `retrieval_stats` exposes the internal cognitive load of the system to the observability layer.
 3. **The Self-Test Contract:** By embedding `assertions` and a `roundtrip_test` directly into the `AGENTS.md` file, the specification itself becomes executable test code. The agent's capability can be algorithmically audited against the parameters (e.g. latency, F1 score) demanded by the initial spec.
+
+
+## Phase 5: Topological Persona Causal Sculpting (Human-in-the-Loop)
+
+### Overview
+In alignment with the "Drift Check" invariant, we observed a gap in how human tacit knowledge interfaces with the deterministic reasoning of the App Matrix. The system operated unilaterally.
+
+### Key Architectural Enhancements
+1.  **Friction Injection Protocol:** We implemented a bilateral mechanism (`sculptApp`) allowing human operators to inject unstructured "Tacit Operational Friction" into existing application definitions.
+2.  **Draft-Conditioned Constrained Decoding (DCCD) Sculpting:** A new API node (`sculptTopologicalPersona`) was established using `gemini-3-flash-preview` to integrate this friction without causing "Semantic Annihilation".
+3.  **Metabolic Cost Calculus:** The AI now calculates the Thermodynamic/Cognitive Load (`metabolicCost`) required to balance the original rigid technical specifications with the newly introduced human friction, providing a quantifiable metric of system strain.
