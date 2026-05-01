@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppStore } from '../services/AppContext';
 import { AppCard } from '../components/AppCard';
 import { SpecsModal } from '../components/SpecsModal';
-import { GitMerge, X, Sparkles, Trash2 } from 'lucide-react';
+import { GitMerge, X, Sparkles, Trash2, Search } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
   const { 
@@ -16,7 +16,9 @@ export const Dashboard: React.FC = () => {
     blendSelectedApps, 
     clearSelection,
     isProcessing,
-    purgeApps
+    purgeApps,
+    searchQuery,
+    setSearchQuery
   } = useAppStore();
 
   const [viewingSpecsId, setViewingSpecsId] = useState<string | null>(null);
@@ -42,9 +44,23 @@ export const Dashboard: React.FC = () => {
                 Purge
             </button>
           </div>
-          <p className="text-slate-500">
+          <p className="text-slate-500 mb-4">
             Manage {apps.length} applications. Select 2 apps to perform <span className="text-sovereign-400">Conceptual Blending</span>.
           </p>
+
+        <div className="w-full md:w-96 relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-slate-500" />
+            </div>
+            <input
+                type="text"
+                placeholder="Semantic resonance search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-700 text-slate-200 text-sm rounded-lg pl-10 p-2 focus:ring-sovereign-500 focus:border-sovereign-500 transition-colors"
+            />
+        </div>
+
         </div>
         
         {selectedAppIds.length > 0 && (
@@ -94,7 +110,7 @@ export const Dashboard: React.FC = () => {
                 <p className="text-slate-600 text-sm mt-1">Use the Genesis Engine in the sidebar to spawn new concepts.</p>
             </div>
         ) : (
-            apps.map((app) => (
+            [...apps].sort((a, b) => (b.resonanceScore || 0) - (a.resonanceScore || 0)).map((app) => (
             <AppCard 
                 key={app.id} 
                 app={app} 

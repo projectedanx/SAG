@@ -12,6 +12,8 @@ export interface AppItem {
   isDeepBlend?: boolean;
   cfdiScore?: number;
   auditLog?: string;
+  resonanceScore?: number;
+  humanFeedback?: 'Resonant' | 'Dissonant';
 }
 
 export interface GenerationConfig {

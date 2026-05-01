@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 import { AppItem, GenerationConfig, INITIAL_APP_DATA, LogEntry, AppDomain } from '../types';
 import { generateAppDescription, generateBlendedConcept, generateConceptsFromDomains, generateAppSpecification, performSovereignAudit, sculptTopologicalPersona } from './geminiService';
+import { tokenize, calculateIDF, vectorize, calculateCosineSimilarity, applyHumanPerturbation } from './resonanceEngine';
 
 interface AppContextType {
   apps: AppItem[];
@@ -23,6 +24,9 @@ interface AppContextType {
   blendSelectedApps: () => Promise<void>;
   clearSelection: () => void;
   generateAppsFromSelectedDomains: () => Promise<void>;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  setHumanFeedback: (id: string, feedback: 'Resonant' | 'Dissonant' | undefined) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -48,6 +52,40 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedAppIds, setSelectedAppIds] = useState<string[]>([]);
   const [selectedDomains, setSelectedDomains] = useState<AppDomain[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      // Clear resonance scores if no query
+      setApps(prev => prev.map(app => ({ ...app, resonanceScore: undefined })));
+      return;
+    }
+
+    const corpus = apps.map(app => {
+        const text = app.name + ' ' + app.originalDescription + ' ' + (app.specification || '');
+        return tokenize(text);
+    });
+
+    const idf = calculateIDF(corpus);
+    const vocab = Object.keys(idf);
+
+    const queryTokens = tokenize(searchQuery);
+    const queryVec = vectorize(queryTokens, vocab, idf);
+
+    setApps(prev => prev.map(app => {
+        const appTokens = tokenize(app.name + ' ' + app.originalDescription + ' ' + (app.specification || ''));
+        const appVec = vectorize(appTokens, vocab, idf);
+        let score = calculateCosineSimilarity(queryVec, appVec);
+        score = applyHumanPerturbation(score, app.humanFeedback);
+
+        return { ...app, resonanceScore: score };
+    }));
+
+  // We need to carefully update resonance scores without triggering infinite loops
+  }, [searchQuery]); // Run only when search query changes
+   // for full object to prevent infinite loops, relying on length or explicit updates.
+
 
   const addLog = useCallback((message: string, type: LogEntry['type'] = 'info') => {
     setLogs(prev => [...prev, {
@@ -60,6 +98,25 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const updateConfig = (key: keyof GenerationConfig, value: number) => {
     setConfig(prev => ({ ...prev, [key]: value }));
   };
+
+
+  const setHumanFeedback = useCallback((id: string, feedback: 'Resonant' | 'Dissonant' | undefined) => {
+    setApps(prev => prev.map(app => {
+      if (app.id !== id) return app;
+
+      const newFeedback = app.humanFeedback === feedback ? undefined : feedback;
+      const baseScore = app.resonanceScore ? (app.humanFeedback === 'Resonant' ? app.resonanceScore / 1.618 : (app.humanFeedback === 'Dissonant' ? app.resonanceScore / 0.618 : app.resonanceScore)) : 0;
+      const newScore = baseScore > 0 ? applyHumanPerturbation(baseScore, newFeedback) : undefined;
+
+      return {
+          ...app,
+          humanFeedback: newFeedback,
+          resonanceScore: newScore
+      };
+    }));
+    addLog(`Human tacit friction applied to ${id}: ${feedback}`, 'system');
+  }, [addLog]);
+
 
   const updateAppStatus = (id: string, status: AppItem['status'], updates?: Partial<AppItem>) => {
     setApps(prev => prev.map(app => 
@@ -300,7 +357,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       toggleDomainSelection,
       blendSelectedApps,
       clearSelection,
-      generateAppsFromSelectedDomains
+      generateAppsFromSelectedDomains,
+      searchQuery,
+      setSearchQuery,
+      setHumanFeedback
     }}>
       {children}
     </AppContext.Provider>
