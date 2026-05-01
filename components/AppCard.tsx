@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppItem } from '../types';
-import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers, ShieldAlert, ShieldCheck, Anvil, Activity } from 'lucide-react';
+import { useAppStore } from '../services/AppContext';
+import { RefreshCw, CheckCircle, AlertCircle, Box, Sparkles, Check, FileText, FileCode, Layers, ShieldAlert, ShieldCheck, Anvil, Activity, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 interface AppCardProps {
   app: AppItem;
@@ -10,11 +11,13 @@ interface AppCardProps {
   onViewSpecs?: (id: string) => void;
   onAudit?: (id: string) => void;
   onSculpt?: (id: string, friction: string) => void;
+  onHumanFeedback?: (id: string, feedback: 'Resonant' | 'Dissonant' | undefined) => void;
 
   onSelect?: (id: string) => void;
 }
 
-export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onAudit, onSculpt, onSelect }) => {
+export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, onGenerateSpecs, onViewSpecs, onAudit, onSculpt, onSelect, onHumanFeedback }) => {
+  const { searchQuery, setHumanFeedback } = useAppStore();
   const statusColors = {
     idle: 'border-slate-800 bg-slate-900/50',
     generating: 'border-sovereign-500/50 bg-sovereign-900/10 shadow-[0_0_15px_-3px_rgba(14,165,233,0.3)]',
@@ -125,6 +128,47 @@ export const AppCard: React.FC<AppCardProps> = ({ app, isSelected, onGenerate, o
              )}
           </div>
         )}
+
+
+      {searchQuery && app.resonanceScore !== undefined && (
+        <div className="mt-3 pt-3 border-t border-slate-800 flex flex-col gap-2 bg-slate-900/50 p-2 rounded">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-slate-400 font-mono">Semantic Resonance</span>
+            <span className="text-xs font-bold text-sovereign-400">{(app.resonanceScore * 100).toFixed(1)}%</span>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setHumanFeedback(app.id, app.humanFeedback === 'Resonant' ? undefined : 'Resonant');
+              }}
+              className={`flex-1 py-1 px-2 rounded flex items-center justify-center gap-1 text-xs transition-colors ${
+                app.humanFeedback === 'Resonant'
+                  ? 'bg-green-500/20 text-green-400 border border-green-500/50'
+                  : 'bg-slate-800 text-slate-500 hover:bg-slate-700'
+              }`}
+            >
+              <ThumbsUp className="w-3 h-3" />
+              Resonant
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setHumanFeedback(app.id, app.humanFeedback === 'Dissonant' ? undefined : 'Dissonant');
+              }}
+              className={`flex-1 py-1 px-2 rounded flex items-center justify-center gap-1 text-xs transition-colors ${
+                app.humanFeedback === 'Dissonant'
+                  ? 'bg-red-500/20 text-red-400 border border-red-500/50'
+                  : 'bg-slate-800 text-slate-500 hover:bg-slate-700'
+              }`}
+            >
+              <ThumbsDown className="w-3 h-3" />
+              Dissonant
+            </button>
+          </div>
+        </div>
+      )}
 
       </div>
 

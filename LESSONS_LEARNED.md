@@ -65,3 +65,14 @@ In alignment with the "Drift Check" invariant, we observed a gap in how human ta
 1.  **Friction Injection Protocol:** We implemented a bilateral mechanism (`sculptApp`) allowing human operators to inject unstructured "Tacit Operational Friction" into existing application definitions.
 2.  **Draft-Conditioned Constrained Decoding (DCCD) Sculpting:** A new API node (`sculptTopologicalPersona`) was established using `gemini-3-flash-preview` to integrate this friction without causing "Semantic Annihilation".
 3.  **Metabolic Cost Calculus:** The AI now calculates the Thermodynamic/Cognitive Load (`metabolicCost`) required to balance the original rigid technical specifications with the newly introduced human friction, providing a quantifiable metric of system strain.
+
+## Phase 6: The Serendipity Matrix & Semantic Resonance (Epic 3)
+
+### Overview
+In alignment with the "Local-First" invariant and the request for structural isomorphic expression of AI and Human value, Epic 3 (Hyper-Local Vector Embeddings for Cognitive Search) was implemented via a lightweight, in-browser TF-IDF and Cosine Similarity engine (`resonanceEngine.ts`). This avoids any reliance on external CDN or server-based embedding models.
+
+### Key Architectural Enhancements
+1.  **Semantic Resonance Engine:** Replaced deterministic keyword searching with a mathematical vector space that measures the topological proximity (Resonance Score) of applications within the matrix.
+2.  **Human Tacit Perturbation:** To resolve the tension between pure mathematical similarity and subjective human serendipity, the `AppItem` schema was augmented with `humanFeedback` (Resonant/Dissonant).
+3.  **Golden Scar Integration:** Mathematical reality and human veto are held in paraconsistent superposition. When a user marks an item as "Resonant" or "Dissonant", a mathematical perturbation (Golden Ratio multiplier: 1.618 / 0.618) is applied. This is a deliberate "Symbolic Scar", warping the vector space to accommodate human Tacit Operational Friction.
+4.  **Zero-Entropy execution:** The logic executes exclusively within the browser context, preserving identity-controlled data requirements.
