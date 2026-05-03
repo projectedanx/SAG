@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sovereign.os/pluriversal-capsule.schema.json",
+  "title": "Pluriversal Knowledge Capsule (PKC)",
+  "description": "A scaffold for holding ambiguity in tension between AI deterministic models and Human tacit friction, preventing semantic annihilation.",
+  "type": "object",
+  "properties": {
+    "capsule_id": {
+      "type": "string",
+      "description": "Cryptographic hash identifier for the capsule"
+    },
+    "app_reference": {
+      "type": "string",
+      "description": "Reference to the AppItem ID in the matrix"
+    },
+    "Hickam_Orientation": {
+      "type": "object",
+      "description": "The diagnostic context emphasizing that patients can have as many diseases as they please (multiple concurrent, valid architectural contradictions).",
+      "properties": {
+        "primary_axiom": { "type": "string" },
+        "competing_vectors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["primary_axiom", "competing_vectors"]
+    },
+    "Contrastive_Delta": {
+      "type": "object",
+      "description": "The measured divergence between the mathematically pure state and the human-perturbed state.",
+      "properties": {
+        "mathematical_resonance": { "type": "number" },
+        "human_friction_input": { "type": "string" },
+        "golden_scar_multiplier": { "type": "number" }
+      },
+      "required": ["mathematical_resonance", "human_friction_input"]
+    },
+    "Martensite_Metrics": {
+      "type": "object",
+      "description": "The thermodynamic load measurements indicating the stress of holding the contradiction.",
+      "properties": {
+        "CFDI_score": { "type": "number" },
+        "metabolic_cost": { "type": "number" },
+        "epistemic_escrow_triggered": { "type": "boolean" }
+      },
+      "required": ["CFDI_score", "metabolic_cost", "epistemic_escrow_triggered"]
+    }
+  },
+  "required": [
+    "capsule_id",
+    "app_reference",
+    "Hickam_Orientation",
+    "Contrastive_Delta",
+    "Martensite_Metrics"
+  ]
+}
