@@ -86,3 +86,8 @@ In alignment with the structural isomorphic expression of AI and Human value, Ep
 1.  **VULCAN Epistemic Paradigm Implementation:** Integrated the VULCAN framework to define the conceptual value boundary: AI provides Deterministic Topology and Constraint Enforcement, while Humans provide Tacit Friction and Bricolage.
 2.  **Pluriversal Knowledge Capsule (PKC):** Created the `pluriversal_capsule.json` schema and `pluriversalCapsuleGenerator.ts` to map and output the tension [∇] between pure AI architectural math and Human subjectivity. This explicitly captures `CFDI_score` and `golden_scar_multiplier` to prevent Semantic Annihilation.
 3.  **Agentic Emergence Structure:** Set the foundation for Autonomous Scar Monitoring and FIPI Injection by explicitly tracking the divergence (`Contrastive_Delta`) and stress (`Martensite_Metrics`) within the generation layer. This fulfills the requirement of inverting the agent's strategy.
+
+## Structural Documentation in Sovereign Paradigms
+- When documenting non-standard architectures like the "Sovereign OS" and its Epistemic Matrix, generic JSDoc descriptions actively cause "Semantic Annihilation".
+- Documentation must not just describe the types (e.g. \`string\`, \`number\`), but must explicitly anchor them to the underlying conceptual framework (e.g., \`cfdiScore\` must be documented as the measure of Algorithmic Shame, not just a score float).
+- Aligning inline documentation across isolated systems (like the React Frontend and KORSAKOV MCP Server) creates a coherent epistemic boundary for developers.

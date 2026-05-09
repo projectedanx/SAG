@@ -9,8 +9,14 @@ const server = new McpServer({
   version: "2026.4.12",
 });
 
+/** Path to the local-first persistent storage artifact representing the Epistemic Matrix */
 const MATRIX_FILE_PATH = path.resolve(process.cwd(), "../matrix.json");
 
+/**
+ * Registers the 'read_epistemic_matrix' tool following the KORSAKOV architectural manifest.
+ * PURPOSE: Extracts the ephemeral state of the Sovereign App Matrix into a persistent, queryable Local-first JSON layer.
+ * Enforces JSON Schema Draft 2020-12 and strict path traversal shear protection by only allowing reads from matrix.json.
+ */
 server.registerTool(
   "read_epistemic_matrix",
   {
@@ -57,6 +63,11 @@ server.registerTool(
   }
 );
 
+/**
+ * Registers the 'write_epistemic_matrix' tool following the KORSAKOV architectural manifest.
+ * PURPOSE: Mutates the persistent Local-first JSON layer with a new Epistemic Matrix state.
+ * Implements SERF-compliant structured error recoveries for mutation failures and JSON validation faults.
+ */
 server.registerTool(
   "write_epistemic_matrix",
   {
@@ -104,6 +115,10 @@ server.registerTool(
   }
 );
 
+/**
+ * Initializes the StdioServerTransport and connects the MCP server, logging the active state.
+ * Executes the core KORSAKOV-compliant server loop for stdio-based inter-process communication.
+ */
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);

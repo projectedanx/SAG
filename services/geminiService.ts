@@ -49,6 +49,18 @@ export const generateAppDescription = async (
   }
 };
 
+/**
+ * Synthesizes two distinct application personas into a novel, hybrid concept.
+ * If the input personas possess deep structural specifications (isDeepBlend is true),
+ * the engine attempts a 'Deep Blend', producing a fully realized technical specification
+ * bridging the two epistemic models.
+ *
+ * @param {AppItem} app1 - The first parent application persona.
+ * @param {AppItem} app2 - The second parent application persona.
+ * @param {GenerationConfig} config - The thermodynamic parameters guiding generation.
+ * @returns {Promise<{ name: string; description: string; specification?: string }>} The resulting hybrid application details.
+ * @throws {Error} If the Gemini API call fails or JSON parsing of the output fails.
+ */
 export const generateBlendedConcept = async (
   app1: AppItem,
   app2: AppItem,
@@ -115,6 +127,16 @@ export const generateBlendedConcept = async (
   }
 };
 
+/**
+ * The core engine for inductive reasoning: generates novel Sovereign app concepts
+ * derived entirely from selected foundational domains, looking for structural needs
+ * and proposing cryptographic/local-first hypotheses.
+ *
+ * @param {string[]} domains - An array of AppDomains to draw inspiration from.
+ * @param {number} count - The number of novel concepts to generate. Default is 3.
+ * @returns {Promise<Array<{ name: string; description: string }>>} An array of newly induced concepts.
+ * @throws {Error} If the Gemini API call or parsing fails.
+ */
 export const generateConceptsFromDomains = async (
   domains: string[],
   count: number = 3
@@ -172,6 +194,15 @@ export const generateConceptsFromDomains = async (
   }
 };
 
+/**
+ * Transforms an abstract application persona into a deterministic Technical Specification
+ * following the Sovereign OS paradigm. It enforces the generation of KPIs, schema, and API contracts.
+ *
+ * @param {AppItem} app - The application persona to formalize.
+ * @param {GenerationConfig} config - The parameters (maxTokens, temperature) strictly guiding the output.
+ * @returns {Promise<string>} The structured Markdown technical specification.
+ * @throws {Error} If the Gemini API call fails.
+ */
 export const generateAppSpecification = async (
   app: AppItem,
   config: GenerationConfig
@@ -236,6 +267,17 @@ export const generateAppSpecification = async (
     throw error;
   }
 };
+/**
+ * Performs Topological Causal Sculpting. Injects a tacit human constraint (operational friction)
+ * into a deterministic technical specification without erasing the tension. It calculates the
+ * 'Metabolic Cost' of resolving this spatial/logical constraint.
+ *
+ * @param {AppItem} app - The application persona undergoing sculpting.
+ * @param {string} friction - The human-provided operational friction constraint.
+ * @param {GenerationConfig} config - The generation configuration parameters.
+ * @returns {Promise<{ specification: string; metabolicCost: number }>} The updated specification containing the 'Symbolic Scar' and the calculated thermodynamic strain.
+ * @throws {Error} If the Gemini API call or JSON parsing fails.
+ */
 export const sculptTopologicalPersona = async (
   app: AppItem,
   friction: string,
@@ -288,6 +330,16 @@ export const sculptTopologicalPersona = async (
   }
 };
 
+/**
+ * Executes a structural audit against an application persona to evaluate its alignment
+ * with Sovereign OS invariants (Local-first architecture, Cryptographic proofs, Identity-controlled data).
+ * Outputs a Confidence-Fidelity Divergence Index (CFDI) score, where >0.15 triggers an Epistemic Escrow lock.
+ *
+ * @param {AppItem} app - The application persona to evaluate.
+ * @param {GenerationConfig} config - The parameters guiding the strict, deterministic critique.
+ * @returns {Promise<{ cfdiScore: number; auditLog: string }>} The calculated CFDI score and detailed algorithmic shame/audit log.
+ * @throws {Error} If the Gemini API call or JSON parsing fails.
+ */
 export const performSovereignAudit = async (
   app: AppItem,
   config: GenerationConfig

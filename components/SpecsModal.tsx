@@ -7,7 +7,17 @@ interface SpecsModalProps {
   onClose: () => void;
 }
 
-export const SpecsModal: React.FC<SpecsModalProps> = ({ app, onClose }) => {
+export /**
+ * A modal overlay displaying the deep deterministic Technical Specification of an application persona.
+ * Translates the generated Markdown into structural UI, rendering the KPIs, architecture, and
+ * any 'Symbolic Scars' created through Causal Sculpting.
+ *
+ * @param {SpecsModalProps} props - The component props.
+ * @param {AppItem | null} props.app - The application persona currently active in the modal.
+ * @param {() => void} props.onClose - Callback to dismiss the modal and return to the Epistemic Matrix.
+ * @returns {JSX.Element | null} The rendered specification modal or null if no app is active.
+ */
+const SpecsModal: React.FC<SpecsModalProps> = ({ app, onClose }) => {
   const [copied, setCopied] = React.useState(false);
 
   if (!app.specification) return null;

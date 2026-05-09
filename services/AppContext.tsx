@@ -367,6 +367,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   );
 };
 
+/**
+ * Custom hook granting deep read/write access to the Epistemic Matrix context.
+ * Enables UI components to execute Toplogical Causal Sculpting, Sovereign Audits, and Conceptual Blending.
+ *
+ * @returns {AppContextType} The current state and mutators of the Sovereign OS matrix.
+ * @throws {Error} If called outside of an AppProvider boundary.
+ */
 export const useAppStore = () => {
   const context = useContext(AppContext);
   if (!context) {
