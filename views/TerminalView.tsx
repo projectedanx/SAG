@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { useAppStore } from '../services/AppContext';
 
-export const TerminalView: React.FC = () => {
+export /**
+ * A persistent logging interface simulating a hacker/terminal aesthetic.
+ * Subscribes to the AppContext to render Sovereign Audit logs, CFDI scores,
+ * generation errors, and the output of Pluriversal Capsule Generators in real-time.
+ *
+ * @returns {JSX.Element} The rendered terminal log view.
+ */
+const TerminalView: React.FC = () => {
   const { logs } = useAppStore();
   const endRef = useRef<HTMLDivElement>(null);
 

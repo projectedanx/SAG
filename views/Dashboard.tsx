@@ -4,7 +4,14 @@ import { AppCard } from '../components/AppCard';
 import { SpecsModal } from '../components/SpecsModal';
 import { GitMerge, X, Sparkles, Trash2, Search } from 'lucide-react';
 
-export const Dashboard: React.FC = () => {
+export /**
+ * The primary visual representation of the Epistemic Matrix.
+ * Renders the grid of application personas (AppCards) and manages the state
+ * of the Specification Modal. Allows the user to survey the entire landscape of induced concepts.
+ *
+ * @returns {JSX.Element} The rendered dashboard view.
+ */
+const Dashboard: React.FC = () => {
   const { 
     apps, 
     generateDescriptionForApp,
