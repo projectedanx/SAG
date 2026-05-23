@@ -19,3 +19,9 @@
   - **CLASSIFY**: Identified as the "Topological Autopoiesis via Friction-Driven Sculpting" emergence requirement.
   - **VERIFY**: Created the `emergence_strategy` directory containing `STRATEGY.md`, `PLAN.md`, and the `pluriversal_capsule.json` scaffold. Implemented operational logic in `services/pluriversalCapsuleGenerator.ts`. Verified schema enforcement and TypeScript compilation.
   - **JOURNAL**: Created the Pluriversal Knowledge Capsule (PKC) construct to map `Hickam_Orientation`, `Contrastive_Delta`, and `Martensite_Metrics`. The agent role is formally inverted to "Tactile Dialectician" to hold ambiguity in tension [∇].
+
+- **Architectural Senescence Management**:
+  - **DISCOVER**: Identified `components/AppCard.tsx` as having the highest cognitive complexity due to large inline conditional rendering blocks.
+  - **CLASSIFY**: This is a case of Architectural Senescence, specifically a complex component that violates the Single Responsibility Principle and is difficult to maintain.
+  - **VERIFY**: Refactoring the component by extracting `AppCardHeader`, `AppCardMetrics`, and `AppCardActions` into pure functional components reduces cognitive load on the main `AppCard` component. Verified via local build (`npm run build`) and playwright visual screenshot, as well as tests (`npm run test:unit`, `npm run test:integration`, `npm run test:roundtrip`).
+  - **JOURNAL**: Applied the Generative Ratchet principle to extract pure functional components. This structural change improves code readability and maintainability without altering functionality. Passed all tests.
