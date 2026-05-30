@@ -37,11 +37,16 @@
     },
     "Martensite_Metrics": {
       "type": "object",
-      "description": "The thermodynamic load measurements indicating the stress of holding the contradiction.",
+      "description": "The thermodynamic load measurements indicating the stress of holding the contradiction, including infomorphisms.",
       "properties": {
         "CFDI_score": { "type": "number" },
         "metabolic_cost": { "type": "number" },
-        "epistemic_escrow_triggered": { "type": "boolean" }
+        "epistemic_escrow_triggered": { "type": "boolean" },
+        "infomorphism_strain": { "type": "number" },
+        "inverse_safety_states": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
       },
       "required": ["CFDI_score", "metabolic_cost", "epistemic_escrow_triggered"]
     }

@@ -91,3 +91,12 @@ In alignment with the structural isomorphic expression of AI and Human value, Ep
 - When documenting non-standard architectures like the "Sovereign OS" and its Epistemic Matrix, generic JSDoc descriptions actively cause "Semantic Annihilation".
 - Documentation must not just describe the types (e.g. \`string\`, \`number\`), but must explicitly anchor them to the underlying conceptual framework (e.g., \`cfdiScore\` must be documented as the measure of Algorithmic Shame, not just a score float).
 - Aligning inline documentation across isolated systems (like the React Frontend and KORSAKOV MCP Server) creates a coherent epistemic boundary for developers.
+
+## Phase 8: Infomorphisms and Inverse Safety States
+
+### Overview
+In alignment with the structural isomorphic expression of AI and Human value, the App Matrix now requires a mathematical structure to represent inverse safety states. This enables reliable emergence when holding ambiguity in tension [∇].
+
+### Key Architectural Enhancements
+1.  **Infomorphisms Mapping:** We augmented the `AppItem` definition in `types.ts` to include `infomorphismStrain` and `inverseSafetyStates`.
+2.  **Pluriversal Capsule Refactoring:** The `pluriversal_capsule.json` schema and `pluriversalCapsuleGenerator.ts` were refactored to extract and serialize the inverse safety states into the `Martensite_Metrics` block. This ensures the structural isomorphic expression is strictly preserved in the Zero-Entropy Code Emission.
