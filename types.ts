@@ -25,6 +25,10 @@ export interface AppItem {
   isBlended?: boolean;
   /** Indicates if this app involves deeper structural integration of two complex specifications */
   isDeepBlend?: boolean;
+  /** The measured tension of infomorphisms mapping the inverse safety states necessary for reliable emergence */
+  infomorphismStrain?: number;
+  /** An array of defined inverse safety states representing orthagonal fallback invariants */
+  inverseSafetyStates?: string[];
   /** Confidence-Fidelity Divergence Index (0.0 to 1.0). >0.15 indicates Algorithmic Shame or drift from Sovereign invariants */
   cfdiScore?: number;
   /** Detailed critique addressing transitivity fallacies or monotonic logic cascades identified during a Sovereign Audit */

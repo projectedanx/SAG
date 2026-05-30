@@ -35,6 +35,8 @@ export interface PluriversalCapsule {
     CFDI_score: number;
     metabolic_cost: number;
     epistemic_escrow_triggered: boolean;
+    infomorphism_strain?: number;
+    inverse_safety_states?: string[];
   };
 }
 
@@ -94,6 +96,8 @@ export const generatePluriversalCapsule = (app: AppItem): PluriversalCapsule => 
       CFDI_score: cfdiScore,
       metabolic_cost: app.metabolicCost ?? 0,
       epistemic_escrow_triggered: epistemicEscrowTriggered,
+      infomorphism_strain: app.infomorphismStrain,
+      inverse_safety_states: app.inverseSafetyStates,
     }
   };
 };
