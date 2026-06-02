@@ -100,3 +100,14 @@ In alignment with the structural isomorphic expression of AI and Human value, th
 ### Key Architectural Enhancements
 1.  **Infomorphisms Mapping:** We augmented the `AppItem` definition in `types.ts` to include `infomorphismStrain` and `inverseSafetyStates`.
 2.  **Pluriversal Capsule Refactoring:** The `pluriversal_capsule.json` schema and `pluriversalCapsuleGenerator.ts` were refactored to extract and serialize the inverse safety states into the `Martensite_Metrics` block. This ensures the structural isomorphic expression is strictly preserved in the Zero-Entropy Code Emission.
+
+## Phase 9: Empirical Documentation Synthesis (0xCARTO Cartography)
+
+### Overview
+In alignment with the "Zero-Entropy Documentation Synthesis Engine" protocols dictated by 0xCARTO, the entire documentation substrate of the repository was rewritten. The intent is to remove generic, non-bounded vocabulary and replace it with strict empirical mapping of intent, constraint, and structural causality.
+
+### Key Architectural Enhancements
+1.  **5-Tier 0xCARTO Structure:** The `README.md` was rewritten to strictly follow the 5-tier structure (Repository Identity, Architecture Topology, CI/CD Cartograph, Dependency Matrix, Operational Runbook) ensuring documentation is treated as a sedimentary record of decisions rather than a sales pitch.
+2.  **Bounded Vocabulary Instantiation:** `DOMAIN_GLOSSARY.md` and `CONSTRAINTS.md` were established as the definitive sources of truth for the Sovereign OS lexicon (e.g., *Golden Scar*, *Algorithmic Shame*, *Metabolic Cost*) and its operational limits (e.g., *Root Hygiene*, *Prune-First Protocol*). This prevents "Semantic Erasure".
+3.  **Architectural Gerontology Logging:** Strategic structural decisions (Local-First file persistence over cloud DBs, KORSAKOV standard I/O standard) were recorded as Architectural Decision Records (`docs/adr/001-*.md`, `docs/adr/002-*.md`) containing specific tension metrics and schema validation.
+4.  **Deterministic Agent Guardrails:** The `AGENTS.md` file was expanded to ensure autonomous agents respect the established constraints (Strict dependency versioning, UI aesthetic limits) before generating code.
