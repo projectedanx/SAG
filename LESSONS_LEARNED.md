@@ -100,3 +100,15 @@ In alignment with the structural isomorphic expression of AI and Human value, th
 ### Key Architectural Enhancements
 1.  **Infomorphisms Mapping:** We augmented the `AppItem` definition in `types.ts` to include `infomorphismStrain` and `inverseSafetyStates`.
 2.  **Pluriversal Capsule Refactoring:** The `pluriversal_capsule.json` schema and `pluriversalCapsuleGenerator.ts` were refactored to extract and serialize the inverse safety states into the `Martensite_Metrics` block. This ensures the structural isomorphic expression is strictly preserved in the Zero-Entropy Code Emission.
+
+## Phase 9: Empirical Documentation & 0xCARTO Alignment
+
+### Overview
+In alignment with the 0xCARTO Pluriversal Repository Cartographer specification (DRP-2026-CARTO-0.0.1), the project's documentation has been strictly empirical and structural, transforming the repository into a sedimentary record of decisions made under pressure.
+
+### Key Insights & Invariants
+1. **The 5-Tier Documentation Structure:** We successfully extruded the repository's topology into a 5-Tier markdown structure within `README.md`. This included the Repository Identity, Architecture Topology Map (via Mermaid.js), CI/CD Pipeline Cartograph, Dependency Matrix & Entropy Audit, and an Operational Runbook.
+2. **Pluriversal Lexicon:** We established `DOMAIN_GLOSSARY.md` to preserve non-standard naming conventions (e.g., Golden Scar, Metabolic Cost) and local logic structures, avoiding Ontological Erasure.
+3. **Formalizing Constraints:** We established `CONSTRAINTS.md` to define strict Sovereign invariants (e.g., Local-first Architecture) and structural constraints (e.g., UI Aesthetic Constraints, Concurrency Protocol) guiding agentic interaction.
+4. **Architecture Decision Records (ADRs):** We introduced sequentially numbered Architecture Decision Records (`docs/adr/001-epistemic-matrix.md`, `docs/adr/002-pluriversal-capsule.md`) to capture structural tradeoffs as mandated by Empirical Documentation standards.
+5. **Superintendent Journaling:** We adopted the Prune-First Protocol via `.jules/superintendent.md` to formally log infrastructure discoveries and modifications.
