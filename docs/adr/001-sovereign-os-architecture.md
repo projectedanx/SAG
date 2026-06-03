@@ -1,12 +1,12 @@
-{
-  "outcome_type": "Architectural Gerontology",
-  "target_module": "Global Epistemic Matrix State",
-  "initial_cognitive_complexity_score": 8.4,
-  "hypothesis_summary": "Implementing a strictly Local-First React Architecture using file-system persistence over a managed cloud database preserves Sovereign OS invariants but introduces state synchronization friction.",
-  "ACU_robustness_score": 0.92,
-  "tension_metric": "Novelty: 0.85, Grounding: 0.90 (Tension: 0.05)",
-  "justification_or_plan": "The decision establishes the 'Identity-controlled Data' invariant by avoiding external DBs. State is managed via local React Context and synced to a localized `matrix.json` file. This resolves external dependency entropy but necessitates standard I/O programmatic interfaces (KORSAKOV) for cross-agent interaction."
-}
+---
+outcome_type: "Architectural Gerontology"
+target_module: "Global Epistemic Matrix State"
+initial_cognitive_complexity_score: 8.4
+hypothesis_summary: "Implementing a strictly Local-First React Architecture using file-system persistence over a managed cloud database preserves Sovereign OS invariants but introduces state synchronization friction."
+ACU_robustness_score: 0.92
+tension_metric: "Novelty: 0.85, Grounding: 0.90 (Tension: 0.05)"
+justification_or_plan: "The decision establishes the 'Identity-controlled Data' invariant by avoiding external DBs. State is managed via local React Context and synced to a localized `matrix.json` file. This resolves external dependency entropy but necessitates standard I/O programmatic interfaces (KORSAKOV) for cross-agent interaction."
+---
 
 ---
 
