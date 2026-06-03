@@ -101,14 +101,13 @@ In alignment with the structural isomorphic expression of AI and Human value, th
 1.  **Infomorphisms Mapping:** We augmented the `AppItem` definition in `types.ts` to include `infomorphismStrain` and `inverseSafetyStates`.
 2.  **Pluriversal Capsule Refactoring:** The `pluriversal_capsule.json` schema and `pluriversalCapsuleGenerator.ts` were refactored to extract and serialize the inverse safety states into the `Martensite_Metrics` block. This ensures the structural isomorphic expression is strictly preserved in the Zero-Entropy Code Emission.
 
-## Phase 9: Empirical Documentation & 0xCARTO Alignment
+## Phase 9: Empirical Documentation Synthesis (0xCARTO Cartography)
 
 ### Overview
-In alignment with the 0xCARTO Pluriversal Repository Cartographer specification (DRP-2026-CARTO-0.0.1), the project's documentation has been strictly empirical and structural, transforming the repository into a sedimentary record of decisions made under pressure.
+In alignment with the "Zero-Entropy Documentation Synthesis Engine" protocols dictated by 0xCARTO, the entire documentation substrate of the repository was rewritten. The intent is to remove generic, non-bounded vocabulary and replace it with strict empirical mapping of intent, constraint, and structural causality.
 
-### Key Insights & Invariants
-1. **The 5-Tier Documentation Structure:** We successfully extruded the repository's topology into a 5-Tier markdown structure within `README.md`. This included the Repository Identity, Architecture Topology Map (via Mermaid.js), CI/CD Pipeline Cartograph, Dependency Matrix & Entropy Audit, and an Operational Runbook.
-2. **Pluriversal Lexicon:** We established `DOMAIN_GLOSSARY.md` to preserve non-standard naming conventions (e.g., Golden Scar, Metabolic Cost) and local logic structures, avoiding Ontological Erasure.
-3. **Formalizing Constraints:** We established `CONSTRAINTS.md` to define strict Sovereign invariants (e.g., Local-first Architecture) and structural constraints (e.g., UI Aesthetic Constraints, Concurrency Protocol) guiding agentic interaction.
-4. **Architecture Decision Records (ADRs):** We introduced sequentially numbered Architecture Decision Records (`docs/adr/001-epistemic-matrix.md`, `docs/adr/002-pluriversal-capsule.md`) to capture structural tradeoffs as mandated by Empirical Documentation standards.
-5. **Superintendent Journaling:** We adopted the Prune-First Protocol via `.jules/superintendent.md` to formally log infrastructure discoveries and modifications.
+### Key Architectural Enhancements
+1.  **5-Tier 0xCARTO Structure:** The `README.md` was rewritten to strictly follow the 5-tier structure (Repository Identity, Architecture Topology, CI/CD Cartograph, Dependency Matrix, Operational Runbook) ensuring documentation is treated as a sedimentary record of decisions rather than a sales pitch.
+2.  **Bounded Vocabulary Instantiation:** `DOMAIN_GLOSSARY.md` and `CONSTRAINTS.md` were established as the definitive sources of truth for the Sovereign OS lexicon (e.g., *Golden Scar*, *Algorithmic Shame*, *Metabolic Cost*) and its operational limits (e.g., *Root Hygiene*, *Prune-First Protocol*). This prevents "Semantic Erasure".
+3.  **Architectural Gerontology Logging:** Strategic structural decisions (Local-First file persistence over cloud DBs, KORSAKOV standard I/O standard) were recorded as Architectural Decision Records (`docs/adr/001-*.md`, `docs/adr/002-*.md`) containing specific tension metrics and schema validation.
+4.  **Deterministic Agent Guardrails:** The `AGENTS.md` file was expanded to ensure autonomous agents respect the established constraints (Strict dependency versioning, UI aesthetic limits) before generating code.
