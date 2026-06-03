@@ -1,5 +1,8 @@
 # Sovereign OS - Application Matrix Generator
 
+## TIER 1: Repository Identity & Ontological Glossary
+
+**[Sovereign OS - Application Matrix Generator]**
 0xCARTO Synthesis Timestamp: 2026-06-03T00:19:00+10:00
 Phronesis Confidence: Φ = 0.04 (target: < 0.05)
 Ground Truth Score: GDS = 0.98 (target: ≥ 0.95)
