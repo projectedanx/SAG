@@ -44,7 +44,7 @@ graph TD
 
     E1 -->|configures API| APP
     APP -->|writes to| M1
-    K1 -->|reads from| M1
+    K1 <-->|reads/writes| M1
 ```
 
 ---
