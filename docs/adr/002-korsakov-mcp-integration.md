@@ -1,12 +1,12 @@
-{
-  "outcome_type": "Architectural Gerontology",
-  "target_module": "KORSAKOV MCP Server",
-  "initial_cognitive_complexity_score": 7.1,
-  "hypothesis_summary": "Integrating a standard I/O Model Context Protocol (MCP) server enables deterministic, schema-validated local interoperability without violating the Sovereign Local-First Invariant.",
-  "ACU_robustness_score": 0.95,
-  "tension_metric": "Novelty: 0.92, Grounding: 0.88 (Tension: 0.04)",
-  "justification_or_plan": "The KORSAKOV server acts as a zero-trust bridge, enforcing JSON Schema Draft 2020-12 and SERF-compliant error recoveries, exposing the `matrix.json` state safely to multi-agent swarms."
-}
+---
+outcome_type: "Architectural Gerontology"
+target_module: "KORSAKOV MCP Server"
+initial_cognitive_complexity_score: 7.1
+hypothesis_summary: "Integrating a standard I/O Model Context Protocol (MCP) server enables deterministic, schema-validated local interoperability without violating the Sovereign Local-First Invariant."
+ACU_robustness_score: 0.95
+tension_metric: "Novelty: 0.92, Grounding: 0.88 (Tension: 0.04)"
+justification_or_plan: "The KORSAKOV server acts as a zero-trust bridge, enforcing JSON Schema Draft 2020-12 and SERF-compliant error recoveries, exposing the `matrix.json` state safely to multi-agent swarms."
+---
 
 ---
 
